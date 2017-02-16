@@ -1,13 +1,13 @@
 actiCircadian
 ================
-#### Overview
+### Overview
 Perform parametric and non-parametric analysis for extraction of circadian features from actigraphy data. 
 
 Cosinor (parametric) analysis is based on Cornelissen, G., 2014. Cosinor-based rhythmometry. Theoretical Biology and Medical Modelling, 11(1), p.16. and it provides Magnitude, Phase, and MESOR of the rhythm.
 
 Non-parametric analysis is based on Van Someren, E.J., Swaab, D.F., Colenda, C.C., Cohen, W., McCall, W.V. and Rosenquist, P.B., 1999. Bright light therapy: improved sensitivity to its effects on rest-activity rhythms in Alzheimer patients by application of nonparametric methods. Chronobiology international, 16(4), pp.505-518. and Gonçalves, B.S., Cavalcanti, P.R., Tavares, G.R., Campos, T.F. and Araujo, J.F., 2014. Nonparametric methods in actigraphy: An update. Sleep Science, 7(3), pp.158-164.
 
-#### How to prepare your data
+### How to prepare your data
 The algorithms have been prepared with activity counts in mind, thus, if you have accelerations, you should employ integration or other method to obtain activity counts. In the case of a 3-axial accelerometer, the algorithm employs axis 1.
 
 All your files should be saved in xlsx format, similar to the files Example.xlsx. Variable names are:
@@ -34,7 +34,7 @@ All your files should be saved in xlsx format, similar to the files Example.xlsx
 - Work days
 - Days off
 
-#### Parametric Analysis
+### Parametric Analysis
 Computes the following variables:
 - Interdaily Stability (IS). Quantifies the invariability between the days, i.e., the strength of coupling of the rhythm to supposedly stable environmental zeitgebers. IS = 0 for for Gaussian noise; IS =1 for perfect IS
 - Intradaily Variability (IV). Gives an indication of the rhythm, i.e., the frequency and extent of transitions between rest and activity. IV = 0 for perfect sine wave; IV ≅2 for Gaussian noise; IV > 2 when definite ultradian component is present
@@ -50,7 +50,7 @@ Returns the following variables:
 - Midline Estimating Statistic Of Rhythm (MESOR). Baseline activity
 - Phase. Time to the point of peak activity.
 
-#### Considerations:
+### Considerations:
 - The algorithm uses Axis 1 of the actigraphy by default. 
 - The algorithm employs an integer number of days, and starts the analysis at 7 AM of each day
 - Days with excessive non-wear time are discarded according to this criterion: valid days must have no more than 1 hour of non-wear time during sleep and at least 10 hours of wear time during wakefulness
