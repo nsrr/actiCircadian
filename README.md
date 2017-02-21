@@ -7,6 +7,8 @@ Cosinor (parametric) analysis is based on Cornelissen, G., 2014. Cosinor-based r
 
 Non-parametric analysis is based on Van Someren, E.J., Swaab, D.F., Colenda, C.C., Cohen, W., McCall, W.V. and Rosenquist, P.B., 1999. Bright light therapy: improved sensitivity to its effects on rest-activity rhythms in Alzheimer patients by application of nonparametric methods. Chronobiology international, 16(4), pp.505-518. and Gonçalves, B.S., Cavalcanti, P.R., Tavares, G.R., Campos, T.F. and Araujo, J.F., 2014. Nonparametric methods in actigraphy: An update. Sleep Science, 7(3), pp.158-164.
 
+Tested on Matlab R2015b, can be used in Octave (should have the io package and the statistics package installed)
+
 ### How to prepare your data
 The algorithms have been prepared with activity counts in mind, thus, if you have accelerations, you should employ integration or other method to obtain activity counts. In the case of a 3-axial accelerometer, the algorithm employs axis 1.
 
