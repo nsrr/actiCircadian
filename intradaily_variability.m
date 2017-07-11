@@ -39,8 +39,7 @@ d=diff(avg);
 % IV is the ratio of the mean square of first derivative 
 % and the overall variance of the complete series of individual
 % hourly averages
-IV(ii)=nanvar(d)/nanvar(avg);
-%IV(ii)=mean(d.^2)/var(avg);
+IV(ii)=nanmean(d.^2)/nanvar(avg);
 ii=ii+1;
 end
 IVm=mean(IV);
