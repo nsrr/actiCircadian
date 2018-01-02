@@ -9,6 +9,8 @@ Non-parametric analysis is based on Van Someren, E.J., Swaab, D.F., Colenda, C.C
 
 Tested on Matlab R2015b, can be used in Octave (should have the io package and the statistics package installed)
 
+You will need Casey Cox's cosinor.m function with its subfunction CIcalc.m. Download them from: https://www.mathworks.com/matlabcentral/fileexchange/20329-cosinor-analysis/content/html/cosinor.html
+
 ### How to prepare your data
 The algorithms have been prepared with activity counts in mind, thus, if you have accelerations, you should employ integration or other method to obtain activity counts. In the case of a 3-axial accelerometer, the algorithm employs axis 1.
 
