@@ -38,7 +38,7 @@ All your files should be saved in xlsx format, similar to the files Example.xlsx
 - Work days
 - Days off
 
-### Parametric Analysis
+### Non-Parametric Analysis
 Computes the following variables:
 - Interdaily Stability (IS). Quantifies the invariability between the days, i.e., the strength of coupling of the rhythm to supposedly stable environmental zeitgebers. IS = 0 for for Gaussian noise; IS =1 for perfect IS
 - Intradaily Variability (IV). Gives an indication of the rhythm, i.e., the frequency and extent of transitions between rest and activity. IV = 0 for perfect sine wave; IV ≅2 for Gaussian noise; IV > 2 when definite ultradian component is present
