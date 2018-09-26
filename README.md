@@ -14,20 +14,21 @@ You will need Casey Cox's cosinor.m function with its subfunction CIcalc.m. Down
 ### How to prepare your data
 The algorithms have been prepared with activity counts in mind, thus, if you have accelerations, you should employ integration or other method to obtain activity counts. In the case of a 3-axial accelerometer, the algorithm employs axis 1.
 
-All your files should be saved in xlsx format, similar to the files Example.xlsx. Variable names are:
-- ID (e.g. 001)
-- Date (e.g. 1/1/2017 - any format should work, as long as in Excel date format)
-- Time (e.g. 1:01 PM - any format should work, as long as in Excel time format)
-- Axis1	activity counts, 1 sample per minute (this is what we use for the analysis)
-- Axis2	activity counts, 1 sample per minute (optional - not used)
-- Axis3	activity counts, 1 sample per minute (optional - not used)
-- VM magnitude, = sqrt(Axis1^2 + Axis2^2 + Axis3^2)	(optional- not used)
-- Steps	(optional -not used)
-- Lux (optional -not used)
-- Awake/sleep (S/W or 1 for sleep and 0 for wake)
-- Wear/non wear	(w/nw or 1 for wear, 0 for non wear)
-- Weekday (day of the week (e.g. Monday) or 1 for weekday, 0 for weekend)
-- Work/non work (1 for work, 0 for non-work (leave empty if not available)
+All your files should be saved in xlsx format, similar to the files Example.xlsx. Variable names for each column are:
+1. ID (e.g. 001)
+2. Date (e.g. 1/1/2017 - any format should work, as long as in Excel date format)
+3. Time (e.g. 1:01 PM - any format should work, as long as in Excel time format)
+4. Axis1	activity counts, 1 sample per minute (this is what we use for the analysis)
+5. Axis2	activity counts, 1 sample per minute (can be left empty - not used)
+6. Axis3	activity counts, 1 sample per minute (can be left empty - not used)
+7. VM magnitude, = sqrt(Axis1^2 + Axis2^2 + Axis3^2)	(can be left empty- not used)
+8. Steps	(optional -not used)
+9. Lux (optional -not used)
+10. Awake/sleep (S/W or 1 for sleep and 0 for wake)
+11. Wear/non wear	(w/nw or 1 for wear, 0 for non wear)
+12. Weekday (day of the week (e.g. Monday) or 1 for weekday, 0 for weekend)
+13. Work/non work (1 for work, 0 for non-work, leave empty if not available)
+14. Rest/non rest (1 for rest, 0 for non-rest, leave empty if not available)
 
 •	All files, one per subject, should be saved in .xlsx format, in a folder
 
