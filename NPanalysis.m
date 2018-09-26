@@ -2,6 +2,7 @@
 % please report bugs and malfunctionings to sara.mariani7@gmail.com
 % generates 5 Excel spreadsheets, one for whole recordings, one for weekdays
 % one for weekends, one for work days and one for days off
+% modified 9/26/18 to account for possible missing rest column
 clc
 close all
 clear all
@@ -52,7 +53,7 @@ for j=1:length(datafiles)
     tab(1:numlineshea,:)=[];
     
     % wear column could be 1/0 or w/nw
-    wearvec=tab(:,12);
+    wearvec=tab(:,11);
     if ischar(wearvec{1})
     wear=ones(size(wearvec));
     for jj=1:length(wearvec)
@@ -93,18 +94,9 @@ for j=1:length(datafiles)
     end
     actigraphy = cell2mat(tab(:,4)); % I am using axis 1
     sleepvec=cell2mat(tab(:,10));    
-    weekdayvec=tab(:,13);
+    weekdayvec=tab(:,12);
    
     work=[];
-    
-    % I need the rest vector to combine with the sleep/wake vector
-    restvec=tab(:,14);
-    rest=ones(size(restvec));
-    for jj=1:length(restvec)
-        if (strfind(restvec{jj},'n')==1 | strfind(restvec{jj},'N')==1)
-            rest(jj)=0;
-        end
-    end
     
     % sleep column could be 0/1 or W/S
     if ischar(sleepvec(1))
@@ -115,10 +107,22 @@ for j=1:length(datafiles)
     sleep=sleepvec;
     end
     
+    restexist=0;
+    if size(tab,2)==14 % we have the rest column
+        restexist=1;
+    % I need the rest vector to combine with the sleep/wake vector
+    restvec=tab(:,14);
+    rest=ones(size(restvec));
+    for jj=1:length(restvec)
+        if (strfind(restvec{jj},'n')==1 | strfind(restvec{jj},'N')==1)
+            rest(jj)=0;
+        end
+    end    
     sleep=sleep.*rest;
     
     % REST IS WEAR
     wear(rest>0)=1;
+    end
     
     % weekday/weekend could be 1/0 or day of the week
     if ischar(weekdayvec{1})
@@ -180,7 +184,17 @@ for j=1:length(datafiles)
     % whole file
     display('Analysis for the whole file')
     %ax(1)=subplot(2,3,1);
+    if restexist==0
+        rest=NaN(size(sleep));
+    end
     [IS, IV, L5, M10, L5mid, M10mid,RA,Amp,numdays,days,nightsleep,nightrest]=mainNParametricMatlab(timeInHours,actigraphy,sleep,rest);
+    if restexist==1
+    TIB{j,1}=num2str(nightrest);
+    SE{j,1}=num2str(nightsleep./nightrest*100);
+    else
+    TIB{j,1}=NaN;
+    SE{j,1}=NaN;
+    end    
     %title('Whole recording')
     data(j,1)=numdays;
     data(j,2)=Amp;
@@ -194,8 +208,7 @@ for j=1:length(datafiles)
     clear ('IS', 'IV', 'L5', 'M10', 'L5mid', 'M10mid','RA','Amp','numdays')
     D{j,1}=num2str(find(days));
     TST{j,1}=num2str(nightsleep);
-    TIB{j,1}=num2str(nightrest);
-    SE{j,1}=num2str(nightsleep./nightrest*100);
+
     timeOfDay=mod(timeInHours,24);
     % weekdays/weekends 
     % weekdays
@@ -218,7 +231,7 @@ for j=1:length(datafiles)
     clear ('IS', 'IV', 'L5', 'M10', 'L5mid', 'M10mid','RA','Amp','numdays')
     % weekends
     display('Analysis for the weekends')
-    inWD=find(weekday & timeOfDay>=7); %weekday
+    inWD=find(weekday==1 & timeOfDay>=7); %weekday
     actigraphyWE=actigraphy;
     actigraphyWE(inWD)=NaN;
     %ax(3)=subplot(2,3,3);
@@ -241,7 +254,7 @@ for j=1:length(datafiles)
     else
     % workdays
     display('Analysis for the workdays')
-    inO=find(work==0 & timeOfDay>=7); %days off
+    inO=find(work==0); %days off
     actigraphyW=actigraphy;
     actigraphyW(inO)=NaN;
     ax(4)=subplot(2,3,4);
@@ -259,7 +272,7 @@ for j=1:length(datafiles)
      clear ('IS', 'IV', 'L5', 'M10', 'L5mid', 'M10mid','RA','Amp','numdays')
     % days off
     display('Analysis for the days off')
-    inW=find(work & timeOfDay>=7); %workdays
+    inW=find(work); %workdays
     actigraphyO=actigraphy;
     actigraphyO(inW)=NaN;
     ax(5)=subplot(2,3,5);
