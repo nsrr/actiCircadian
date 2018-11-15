@@ -1,7 +1,17 @@
-% Perform non parametric analysis on data in UCSD format
-% please report bugs and malfunctionings to sara.mariani7@gmail.com
+% Perform cosinor analysis on actigraphy data
 % generates 5 Excel spreadsheets, one for whole recordings, one for weekdays
 % one for weekends, one for work days and one for days off
+% THE BRIGHAM AND 
+% WOMEN'S HOSPITAL, INC. AND ITS AGENTS RETAIN ALL RIGHTS TO THIS SOFTWARE 
+% AND ARE MAKING THE SOFTWARE AVAILABLE ONLY FOR SCIENTIFIC RESEARCH 
+% PURPOSES. THE SOFTWARE SHALL NOT BE USED FOR ANY OTHER PURPOSES, AND IS
+% BEING MADE AVAILABLE WITHOUT WARRANTY OF ANY KIND, EXPRESSED OR IMPLIED, 
+% INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY AND 
+% FITNESS FOR A PARTICULAR PURPOSE. THE BRIGHAM AND WOMEN'S HOSPITAL, INC. 
+% AND ITS AGENTS SHALL NOT BE LIABLE FOR ANY CLAIMS, LIABILITIES, OR LOSSES 
+% RELATING TO OR ARISING FROM ANY USE OF THIS SOFTWARE.
+% please report bugs and malfunctionings to sara.mariani7@gmail.com
+% modified 11/14/18 to fix bugs related to rest and wear vectors and weekdays/weekends
 clc
 close all
 clear all
@@ -44,7 +54,8 @@ for j=1:length(datafiles)
     if ischar(wearvec{1})
         wear=ones(size(wearvec));
         for jj=1:length(wearvec)
-            if (strfind(wearvec{jj},'n')==1 | strfind(wearvec{jj},'N')==1)
+             if ~isempty(strfind(wearvec{jj},'n'))|| ...
+                ~isempty(strfind(wearvec{jj},'N'))
                 wear(jj)=0;
             end
         end
@@ -89,7 +100,8 @@ for j=1:length(datafiles)
     restvec=tab(:,14);
     rest=ones(size(restvec));
     for jj=1:length(restvec)
-        if (strfind(restvec{jj},'n')==1 | strfind(restvec{jj},'N')==1)
+        if ~isempty(strfind(restvec{jj},'n'))|| ...
+                    ~isempty(strfind(restvec{jj},'N'))
             rest(jj)=0;
         end
     end
@@ -112,9 +124,9 @@ for j=1:length(datafiles)
     if ischar(weekdayvec{1})
         weekday=ones(size(weekdayvec));
         for jj=1:length(weekdayvec)
-            if (strfind(weekdayvec{jj},'Sun') | strfind(weekdayvec{jj},'Sat') ...
-                    | strfind(weekdayvec{jj},'SUN') | strfind(weekdayvec{jj},'SAT') ...
-                    | strfind(weekdayvec{jj},'sun') | strfind(weekdayvec{jj},'sat'))
+            if ~isempty(strfind(weekdayvec{jj},'Sun')) || ~isempty(strfind(weekdayvec{jj},'Sat')) ...
+                    || ~isempty(strfind(weekdayvec{jj},'SUN')) || ~isempty(strfind(weekdayvec{jj},'SAT')) ...
+                    || ~isempty(strfind(weekdayvec{jj},'sun')) || ~isempty(strfind(weekdayvec{jj},'sat'))
                 weekday(jj)=0;
             end
         end
