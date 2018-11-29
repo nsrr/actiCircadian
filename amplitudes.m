@@ -65,11 +65,13 @@ w=ones(round(60*fs*10),1)./(60*fs*10); %average on 5 hours
 if mode==0
 y10hours=nanfilter(w,1,avg);
 y10hours(1:300)=[];
-else
-    y10hours=nanfiltfilt(w,1,avg);
-end
 y10hours(1:60*fs*10/2)=0;
 y10hours(end-60*fs*10/2:end)=0;
+else
+    y10hours=nanfiltfilt(w,1,avg);
+    y10hours(1:60*fs*10)=0;
+y10hours(end-60*fs*10:end)=0;
+end
 [M10,i]=nanmax(y10hours);
 M10mid=tavg(i);
 
