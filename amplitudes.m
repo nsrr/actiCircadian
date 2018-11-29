@@ -4,6 +4,7 @@ function [L5,M10,L5mid,M10mid,RA,logAmp]=amplitudes(varargin)
 % mode=0 (default) computes L5 and M10 using moving average of signal
 % mode=1 computes L5 and M10 using filtfilt, which filters twice (obtains
 % smoother signal)
+% modified 11/28/18 --> corrected a bug in case mode=1 that caused M10 to find the wrong number
 
 if nargin<2
 error('Not enough input arguments')
