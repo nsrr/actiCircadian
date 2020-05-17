@@ -3,6 +3,7 @@
 % one for weekends, one for work days and one for days off
 % modified 9/26/18 to account for possible missing rest column
 % modified 11/14/18 to correct bugs relative to weekday/weekend and rest and wear column reading
+% modified 5/17/20 corrected a typo line 105
 % Copyright © The Brigham and Women's Hospital, Inc. THE BRIGHAM AND 
 % WOMEN'S HOSPITAL, INC. AND ITS AGENTS RETAIN ALL RIGHTS TO THIS SOFTWARE 
 % AND ARE MAKING THE SOFTWARE AVAILABLE ONLY FOR SCIENTIFIC RESEARCH 
@@ -101,7 +102,7 @@ for j=1:length(datafiles)
     try
     time=datevec(cell2mat(tab(:,3)));
     catch
-    date=datevec(tab(:,3));
+    time=datevec(tab(:,3));
     end
     actigraphy = cell2mat(tab(:,4)); % I am using axis 1
     sleepvec=cell2mat(tab(:,10));    
