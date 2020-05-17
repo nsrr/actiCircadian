@@ -12,6 +12,7 @@
 % RELATING TO OR ARISING FROM ANY USE OF THIS SOFTWARE.
 % please report bugs and malfunctionings to sara.mariani7@gmail.com
 % modified 11/14/18 to fix bugs related to rest and wear vectors and weekdays/weekends
+% modified 5/17/20 corrected typo line 91
 clc
 close all
 clear all
@@ -88,7 +89,7 @@ for j=1:length(datafiles)
     try
         time=datevec(cell2mat(tab(:,3)));
     catch
-        date=datevec(tab(:,3));
+        time=datevec(tab(:,3));
     end
     actigraphy = cell2mat(tab(:,4)); % I am using axis 1
     sleepvec=cell2mat(tab(:,10));
