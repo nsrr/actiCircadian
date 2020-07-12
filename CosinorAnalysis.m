@@ -13,6 +13,7 @@
 % please report bugs and malfunctionings to sara.mariani7@gmail.com
 % modified 11/14/18 to fix bugs related to rest and wear vectors and weekdays/weekends
 % modified 5/17/20 corrected typo line 91
+% modified 7/12/20 corrected typo line 54
 clc
 close all
 clear all
@@ -51,7 +52,7 @@ for j=1:length(datafiles)
     tab(1:numlineshea,:)=[];
     
     % wear column could be 1/0 or w/nw
-    wearvec=tab(:,12);
+    wearvec=tab(:,11);
     if ischar(wearvec{1})
         wear=ones(size(wearvec));
         for jj=1:length(wearvec)
