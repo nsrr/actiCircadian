@@ -54,6 +54,7 @@ Returns the following variables in a struct:
 - Amplitude. Average difference between max and min activity
 - Midline Estimating Statistic Of Rhythm (MESOR). Baseline activity
 - Phase. Time to the point of peak activity.
+
 Please make sure (modify the function accordingly if needed) that cosinor.m returns a single output, cosinorStruct, where
 cosinorStruct.Mesor=M;
 cosinorStruct.PhiHours=phi;
