@@ -50,10 +50,14 @@ Computes the following variables:
 
 ### Cosinor Analysis
 Employs Casey Cox's cosinor.m function: https://www.mathworks.com/matlabcentral/fileexchange/20329-cosinor-analysis/content/html/cosinor.html
-Returns the following variables:
+Returns the following variables in a struct:
 - Amplitude. Average difference between max and min activity
 - Midline Estimating Statistic Of Rhythm (MESOR). Baseline activity
 - Phase. Time to the point of peak activity.
+Please make sure (modify the function accordingly if needed) that cosinor.m returns a single output, cosinorStruct, where
+cosinorStruct.Mesor=M;
+cosinorStruct.PhiHours=phi;
+cosinorStruct.Amp=Amp;
 
 ### Considerations:
 - The algorithm uses Axis 1 of the actigraphy by default. 
